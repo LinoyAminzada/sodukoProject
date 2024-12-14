@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>4x4 Sudoku Game</title>
+    <link rel="stylesheet" type="text/css" href="js_style.css">
+	<script type="text/javascript" src="game_func.js"></script>
+	<script type="text/javascript" src="clock_func.js"></script>
+	<script type="text/javascript" src="chart_func.js"></script>
+    
+	<script type = "text/javascript" src = "loader.js"></script>
+	
+	<script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart); 
+
+     </script>	
+     
+</head>
+
+<body>
+	
+	<h1>4x4 Sudoku Game</h1>
+    
+   	<div id="timerDisplay" style="font-size: 24px; margin-top: 22px;  font-weight: bold;">00:00</div>
+   	
+    <div style="display: flex; justify-content: center; align-items: center; margin: 20px 0;">
+        <label for="difficulty" style="margin-right: 10px;">Choose difficulty level:</label>
+        <select id="difficulty" style="margin-right: 10px;">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+    </div>
+
+	<div id="modal" style="display: none;">
+	    <div class="modal-content">
+	        <span class="close-button" onclick="closeModal()">x</span>
+	        <p id="modal-message"></p> <!-- Element to display the message -->
+	        <div id="modal-choices"> 
+	        	 <button id="new-game-button" onclick="startNewGame()">Start a new game</button>
+	            <button id="hint-button" onclick="getHint()">Get a hint</button>
+	        </div>
+	        <div id="modal-choices-end"> 	        
+	        	<button id="new-game-button" onclick="startNewGame()">Start a new game</button>
+	           <button id="show-graph-button" onclick="showChart()">show graph history</button>
+	           <button id="clear-history-button" onclick="clearChart()">clear graph history</button>
+	        </div>
+	    </div>
+	</div>
+	
+	<!-- Modal for the graph -->
+    <div id="graph-modal" style="display: none;">
+        <div class="graph-modal-content">
+            <span class="close-button" onclick="closeGraphModal()">x</span>
+            <div id="graph_place" style="width: 60%; height: 500px; margin: 0 auto;"></div>
+        </div>
+    </div>	
+    
+    <h3 id="message"></h3>
+    	
+    <div id="maindiv" align="center"></div>
+    
+    <div>
+    <button onclick="generateRandomSudoku()">Start a new game</button>
+    <button onclick="checkSudoku()">Check Solution</button>
+    <button id="autoCheckButton" onclick="toggleAutoCheck()">Enable Auto-Check Mode</button>
+    </div>
+   
+
+    <script>
+    //google.charts.setOnLoadCallback(loadGameHistory);
+    $("maindiv").innerHTML = createTable(); // Create and display the table
+    </script>
+
+</body>
+</html>
